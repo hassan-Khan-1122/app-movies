@@ -1,0 +1,50 @@
+.icon-buttons {
+    display: flex;
+  }
+  
+  .icon-button {
+    background-color: #007bff; /* or any other color */
+    border: none;
+    border-radius: 50%;
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px; /* Adjust spacing between buttons */
+    color: white; /* or any other color for icon */
+    cursor: pointer;
+  }
+  
+  .icon-button:last-child {
+    margin-right: 0; /* Remove margin for the last button */
+  }
+  
+  .image-container {
+  position: relative;
+}
+
+.image-container img {
+  transition: filter 0.3s ease;
+}
+
+.image-container:hover img {
+  filter: blur(5px);
+}
+
+.icon-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 24px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-container:hover .icon-overlay {
+  opacity: 1;
+}
+
+  
