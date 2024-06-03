@@ -1,6 +1,4 @@
 
-
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { MdSaveAlt } from "react-icons/md";
@@ -18,9 +16,9 @@ function MovieDetail() {
             .then(json => {
                 setMovie(json);
             })
-          
     }, [id]);
-// this is a loading menuuu
+
+    // Loading screen
     if (!movie) return (
         <div className='flex space-x-2 justify-center items-center bg-white h-screen dark:invert'>
             <span className='sr-only'>Loading...</span>
@@ -31,21 +29,17 @@ function MovieDetail() {
     );
 
     return (
-        <div className="flex flex-col md:flex-row items-start p-6 text-white bg-slate-800 cursor-pointer">
-            <div className="image-container max-w-xs md:max-w-sm mb-4 md:mb-0 rounded-lg">
-                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className="rounded-lg" />
-                <div className="icon-overlay">
-                    <MdSaveAlt />
-                </div>
+        <div className="flex flex-col md:flex-row items-start p-6 text-white bg-slate-800">
+            <div className="image-container max-w-full md:max-w-xs mb-4 md:mb-0 rounded-lg">
+                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className="rounded-lg w-full h-auto" />
+                
             </div>
-            <div className="md:ml-6">
+            <div className="md:ml-6 flex-1">
                 <div className='flex items-center'>
-                    <h1 className="text-xl font-bold mb-4">{movie.title}</h1>
+                    <h1 className="text-2xl md:text-4xl font-bold mb-4">{movie.title}</h1>
                 </div>
-               
-                <p className="mb-4 w-[900px] text-[23px]">{movie.overview}</p>
-
-                <div className="icon-buttons mt-5 gap-5">
+                <p className="mb-4 text-base md:text-lg lg:text-xl">{movie.overview}</p>
+                <div className="icon-buttons mt-5 gap-5 flex">
                     <button className="icon-button" title="Add to List">
                         <FontAwesomeIcon icon={faList} />
                     </button>
@@ -56,14 +50,17 @@ function MovieDetail() {
                         <FontAwesomeIcon icon={faBookmark} />
                     </button>
                 </div>
-                <p className="mt-4 text-[20px]"><strong>Director:</strong> {movie.director}</p>
-                <p className='mt-4 text-[20px]'><strong>Popularity:</strong> {movie.popularity}</p>
-                <p className='mt-4 text-[20px]'><strong>Released:</strong> {movie.release_date}</p>
-                <p className='mt-4 text-[20px]'><strong>Average Vote:</strong> {movie.vote_average}</p>
-                <p className='mt-4 text-[20px]'><strong>Vote Count:</strong> {movie.vote_count}</p>
+                <div className="mt-4 space-y-2">
+                    <p className="text-base md:text-lg"><strong>Director:</strong> {movie.director}</p>
+                    <p className="text-base md:text-lg"><strong>Popularity:</strong> {movie.popularity}</p>
+                    <p className="text-base md:text-lg"><strong>Released:</strong> {movie.release_date}</p>
+                    <p className="text-base md:text-lg"><strong>Average Vote:</strong> {movie.vote_average}</p>
+                    <p className="text-base md:text-lg"><strong>Vote Count:</strong> {movie.vote_count}</p>
+                </div>
             </div>
         </div>
     );
 }
 
 export default MovieDetail;
+

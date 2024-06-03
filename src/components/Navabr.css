@@ -1,0 +1,16 @@
+/* .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 18rem; 
+    height: 100%;
+    background-color: #032541;
+    z-index: 10;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease; 
+  }
+  
+  .sidebar.hidden {
+    transform: translateX(-100%);
+  }
+   */

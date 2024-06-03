@@ -1,8 +1,8 @@
 
+
 import React, { useState } from 'react';
 import { FaLongArrowAltRight } from "react-icons/fa";
-import { NavLink } from 'react-router-dom';
-// import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { Link, NavLink } from 'react-router-dom';
 
 function Navbar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -13,14 +13,9 @@ function Navbar() {
 
   return (
     <>
-      <nav className=" border-gray-200 dark:bg-gray-900 shadow-lg bg-[#032541] sticky top-0 left-0">
+      <nav className="border-gray-200 dark:bg-gray-900 shadow-lg bg-[#032541] sticky top-0 left-0">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
-            {/* <img
-              src='https://i.pinimg.com/736x/aa/f7/05/aaf705e06726ce3881288ae4be3ac5fe.jpg'
-              className="w-[50px] "
-              alt="Logo"
-            /> */}
+          <a href="" className="flex items-center space-x-3 rtl:space-x-reverse">
             <span className="self-center text-2xl text-[#ffffff] whitespace-nowrap ">THE MOVIX</span>
           </a>
           <button
@@ -49,9 +44,9 @@ function Navbar() {
             <ul className="flex flex-col p-4 md:p-0 mt-4 border  rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
                 <NavLink
-                to="/"
+                  to="/"
                   href="#"
-                  className="block py-2 pl-3 pr-4   rounded md:bg-transparent text-[#ffffff] text-[20px] font-mono p-[8px]"
+                  className="block py-2 pl-3 pr-4 rounded md:bg-transparent text-[#ffffff] text-[20px] font-mono p-[8px]"
                   aria-current="page"
                 >
                   Home
@@ -66,61 +61,42 @@ function Navbar() {
                 </NavLink>
               </li>
               <li>
-              <NavLink
-              to = "/hassan"
+                <NavLink
+                  to="/upcoming"
                   className="block py-2 pl-3 pr-4  rounded md:hover:bg-transparent  md:dark:hover:bg-transparent text-[#ffffff] text-[20px] font-mono p-[8px]"
                 >
-                  Up comming
+                  Upcoming
                 </NavLink>
-                
               </li>
-              {/* <li>
-              <a
-                  href="#"
-                  className="block py-2 pl-3 pr-4  rounded md:hover:bg-transparent  md:dark:hover:bg-transparent text-[#ffffff] text-[20px] font-mono p-[8px]"
-                >
-                  New movies
-                </a>
-              </li> */}
             </ul>
           </div>
         </div>
       </nav>
+
       <div
-        className={`fixed top-0 left-0 w-64 h-full bg-white shadow-lg transition-transform transform ${
+        className={`fixed top-0 left-0 w-72 h-full bg-[#032541] z-10 shadow-lg transform md:hidden transition-transform ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } md:hidden`}
+        }`}
       >
-        <button
-          className="absolute top-4 right-4 text-gray-500"
-          onClick={toggleSidebar}
-        >
-        {
-    <FaLongArrowAltRight/>
-    // <ArrowForwardIosIcon/>
-        }
-          
-        </button>
-        <ul className="mt-8 space-y-2">
+        <div className='text-white w-12 mt-5 ml-52 cursor-pointer'>
+          <FaLongArrowAltRight size={50} onClick={toggleSidebar}/>
+        </div>
+
+        <ul className="mt-2 space-y-2">
           <li>
-            <a href="#" className="block py-2 px-4 text-gray-900 hover:bg-gray-100">
+            <Link to={"/"} href="#" className="block py-2 px-4 text-white text-[30px] hover:bg-black " onClick={() => setSidebarOpen(false)}>
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#" className="block py-2 px-4 text-gray-900 hover:bg-gray-100">
-              About
-            </a>
+            <Link to={"/rated"}  href="#" className="block py-2 px-4 text-white text-[30px] hover:bg-black " onClick={(()=>setSidebarOpen(false))}>
+              Top Rated
+            </Link>
           </li>
           <li>
-            <a href="#" className="block py-2 px-4 text-gray-900 hover:bg-gray-100">
-              Services
-            </a>
-          </li>
-          <li>
-            <a href="#" className="block py-2 px-4 text-gray-900 hover:bg-gray-100">
-              Contact
-            </a>
+            <Link to="/upcomming"  className="block py-2 px-4 text-white text-[30px] hover:bg-black " onClick={(()=>setSidebarOpen(false))}>
+              Upcoming
+            </Link>
           </li>
         </ul>
       </div>
@@ -129,4 +105,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
