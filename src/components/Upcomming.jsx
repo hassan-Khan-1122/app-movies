@@ -1,28 +1,34 @@
 
 
-
-
 import React, { useEffect, useState } from "react";
 import { FaSearchLocation } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-function Toprated() {
+function upcoming() {
   const [show, setShow] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
-
+  const [error, setError] = useState(null); // State to store error message
   const navigate = useNavigate();
 
   const getMovie = () => {
     fetch(
       "https://api.themoviedb.org/3/movie/upcoming?api_key=a6d86a939602ad4fa0ae979abebc93f3"
     )
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        return res.json();
+      })
       .then((json) => {
         setShow(json.results);
         setFilteredMovies(json.results);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.error("Error fetching data:", error.message);
+        setError("Failed to fetch data. Please try again later.");
+      });
   };
 
   useEffect(() => {
@@ -69,6 +75,9 @@ function Toprated() {
         </div>
       </form>
 
+      {/* Display error message if there is an error */}
+      {error && <p className="text-red-500">{error}</p>}
+
       {/* This is a map function */}
       <h1 className="text-3xl font-mono text-center mt-8 mb-4">Up Comming Movies</h1>
       <div className="flex flex-wrap justify-center gap-4">
@@ -100,6 +109,6 @@ function Toprated() {
   );
 }
 
-export default Toprated;
+export default upcoming;
 
 
